@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/test").permitAll()
-			.antMatchers("/").permitAll()
+			.antMatchers("/","/page-register","/page-forgot-password").permitAll()
 			//.antMatchers("/doacao/view/**").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
 			.and().formLogin()
