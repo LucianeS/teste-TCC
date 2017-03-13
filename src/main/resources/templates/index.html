@@ -3,7 +3,8 @@
 	xmlns:th="http://www.thymleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#2196F3" />
@@ -12,6 +13,8 @@
 <!-- CSS  -->
 <link href="min/plugin-min.css" type="text/css" rel="stylesheet" />
 <link href="min/custom-min.css" type="text/css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
 </head>
 <body id="top" class="scrollspy">
 
@@ -42,12 +45,46 @@
 				</div>-->
 				<div class="nav-wrapper">
 					<!--a href="#" id="logo-container" class="brand-logo">MD Template</a>-->
-					<ul class="left hide-on-med-and-down">
+					<ul class="right hide-on-med-and-down">
 						<li><a href="#intro">Service</a></li>
 						<li><a href="#work">Work</a></li>
 						<li><a href="#team">Team</a></li>
 						<li><a href="#contact">Contact</a></li>
-						<!--<li><a href="login.html" target="_blank">Login</a></li>-->								
+						<!--<li><a href="login.html" target="_blank">Login</a></li>-->
+						<li>
+							<!-- Autenticação -->
+							<div class="row">
+								<div sec:authorize="isAuthenticated()">
+									<div class="col s1">
+										<i class="material-icons">perm_identity</i>
+									</div>
+									<div class="col s1">
+										<h6 th:text="#{login.perfil}"></h6>
+									</div>
+									<div class="col s1">
+										<h6 sec:authentication="principal.nome"></h6>
+									</div>
+									<div class="col s1">
+										<a th:href="@{/logout}" th:if="!${param.success}"
+											id="btLogout"><span th:text="#{btn.logout}"
+											class="btn waves-effect waves-light"></span></a>
+									</div>
+								</div>
+								<div th:if="${message}" class="alert alert-success">
+									<p th:text="${message}" />
+								</div>
+								<div sec:authorize="!isAuthenticated()">
+									<!--<a class="btn waves-effect waves-light" th:href="login">Login</a>-->
+									<div class="col s1">
+										<i class="material-icons">perm_identity</i>
+									</div>
+									<div class="col s1">
+										<a th:href="login">Login</a>
+									</div>
+									<!-- class="btn waves-effect waves-light" -->
+								</div>
+							</div> <!-- Fim Autenticação -->
+						</li>
 					</ul>
 					<ul id="nav-mobile" class="side-nav">
 						<li><a href="#intro">Service</a></li>
@@ -55,23 +92,33 @@
 						<li><a href="#team">Team</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<!--<li><a th:href="login" sec:authorize="!isAuthenticated()">Login</a></li>-->
-					</ul>				
-					<!-- Autenticação -->
-					<div class="right hide-on-med-and-down">
-						<div sec:authorize="isAuthenticated()">
-							<h6 th:text="#{login.perfil}"></h6>
-							<h6 sec:authentication="principal.nome"></h6>
-							<a th:href="@{/logout}" th:if="!${param.success}" id="btLogout"><span
-								th:text="#{btn.logout}" class="btn waves-effect waves-light"></span></a>
-						</div>
-						<div th:if="${message}" class="alert alert-success">
-							<p th:text="${message}" />
-						</div>
-						<div sec:authorize="!isAuthenticated()">
-							<a class="btn waves-effect waves-light" th:href="login">Login</a>
-						</div>
-					</div>
-					<!-- Fim Autenticação -->				
+						<!-- Autenticação -->
+						<li><div class="row">
+								<div sec:authorize="isAuthenticated()">
+									<div class="col s1">
+										<i class="material-icons">perm_identity</i>
+									</div>
+									<div class="col s1">
+										<h6 th:text="#{login.perfil}"></h6>
+									</div>
+									<div class="col s1">
+										<h6 sec:authentication="principal.nome"></h6>
+									</div>
+									<div class="col s1">
+										<a th:href="@{/logout}" th:if="!${param.success}"
+											id="btLogout"><span th:text="#{btn.logout}"
+											class="btn waves-effect waves-light"></span></a>
+									</div>
+								</div>
+								<div th:if="${message}" class="alert alert-success">
+									<p th:text="${message}" />
+								</div>
+								<div sec:authorize="!isAuthenticated()">															
+									<a th:href="login"><i class="material-icons">perm_identity</i>Login</a>									
+								</div>							
+							</div><!-- Fim Autenticação -->
+						</li>												
+					</ul>
 					<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 						class="mdi-navigation-menu"></i></a>
 				</div>
