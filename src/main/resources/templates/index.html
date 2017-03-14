@@ -15,6 +15,8 @@
 <link href="min/custom-min.css" type="text/css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" />
+<link href="css/my_style.css" type="text/css" rel="stylesheet" />
+
 </head>
 <body id="top" class="scrollspy">
 
@@ -51,9 +53,9 @@
 						<li><a href="#team">Team</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<!--<li><a href="login.html" target="_blank">Login</a></li>-->
-						<li>
-							<!-- Autenticação -->
-							<div class="row">
+
+						<!-- Autenticação -->
+						<!--  <div class="row">
 								<div sec:authorize="isAuthenticated()">
 									<div class="col s1">
 										<i class="material-icons">perm_identity</i>
@@ -75,17 +77,43 @@
 								</div>
 								<div sec:authorize="!isAuthenticated()">
 									<!--<a class="btn waves-effect waves-light" th:href="login">Login</a>-->
-									<div class="col s1">
+						<!--  <div class="col s1">
 										<i class="material-icons">perm_identity</i>
 									</div>
 									<div class="col s1">
 										<a th:href="login">Login</a>
 									</div>
 									<!-- class="btn waves-effect waves-light" -->
-								</div>
+						<!--  </div>
 							</div> <!-- Fim Autenticação -->
-						</li>
+
+
+						<div sec:authorize="isAuthenticated()" class="inline">
+							<li class="vertical-align dropdown-button"
+								data-activates='dropdown1'><i class="material-icons inline">perm_identity</i>
+								<span class="inline" th:text="#{login.perfil}"></span>&nbsp;<span class="inline"
+								sec:authentication="principal.nome"></span> 
+								<!-- Dropdown Structure -->
+								<ul id='dropdown1' class='dropdown-content margin-top'>
+									<li><a th:href="@{/logout}" th:if="!${param.success}"
+										id="btLogout"><span th:text="#{btn.logout}"></span></a>
+										<div th:if="${message}" class="alert alert-success">
+											<p th:text="${message}" />
+										</div></li>
+									<li><a href="#!">two</a></li>
+									<li class="divider"></li>
+									<li><a href="#!">three</a></li>
+								</ul><!-- FIM Dropdown -->
+							</li>
+						</div>
+						<!-- Fim Autenticação -->
+						<div sec:authorize="!isAuthenticated()" class="inline">
+							<li><a th:href="login" class="vertical-align"><i class="material-icons inline">perm_identity</i>Login</a>
+							</li>
+						</div>
 					</ul>
+
+
 					<ul id="nav-mobile" class="side-nav">
 						<li><a href="#intro">Service</a></li>
 						<li><a href="#work">Work</a></li>
@@ -106,18 +134,16 @@
 									</div>
 									<div class="col s1">
 										<a th:href="@{/logout}" th:if="!${param.success}"
-											id="btLogout"><span th:text="#{btn.logout}"
-											class="btn waves-effect waves-light"></span></a>
+											id="btLogout"><span th:text="#{btn.logout}"></span>Logout</a>
 									</div>
 								</div>
 								<div th:if="${message}" class="alert alert-success">
 									<p th:text="${message}" />
 								</div>
-								<div sec:authorize="!isAuthenticated()">															
-									<a th:href="login"><i class="material-icons">perm_identity</i>Login</a>									
-								</div>							
-							</div><!-- Fim Autenticação -->
-						</li>												
+								<div sec:authorize="!isAuthenticated()">
+									<a th:href="login">Login</a>
+								</div>
+							</div> <!-- Fim Autenticação --></li>
 					</ul>
 					<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 						class="mdi-navigation-menu"></i></a>

@@ -1,0 +1,11 @@
+.inline {
+	display: inline !important;
+}
+
+.vertical-align {
+	display: inline-flex;
+	vertical-align: middle;
+}
+.margin-top{
+	margin-top:45px;
+}
