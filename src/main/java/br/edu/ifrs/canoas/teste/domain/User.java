@@ -25,6 +25,9 @@ public class User {
 	
 	@Column(nullable = false)
 	private String nome;
+	
+	@Column(nullable = false)
+	private String sobrenome;
 
 	@Column(unique = true, nullable = false)
 	@Email
@@ -73,6 +76,14 @@ public class User {
 		this.email = email;
 	}
 	
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
 	public String getSenha() {
 		return senha;
 	}

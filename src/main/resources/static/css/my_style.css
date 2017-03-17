@@ -4,7 +4,7 @@
 
 .vertical-align {
 	display: inline-flex;
-	vertical-align: middle;
+	vertical-align: top;
 }
 .margin-top{
 	margin-top:45px;

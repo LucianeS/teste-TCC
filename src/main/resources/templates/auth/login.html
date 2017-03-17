@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> <!-- lang="en" -->
 
 <!--================================================================================
 	Item Name: Materialize - Material Design Admin Template
@@ -20,7 +20,7 @@
 	content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. " />
 <meta name="keywords"
 	content="materialize, admin template, dashboard template, flat admin template, responsive admin template," />
-<title>Login Page | Materialize - Material Design Admin Template</title>
+<title th:text="#{login.title}"></title>
 
 <!-- Favicons-->
 <link rel="icon" href="img/favicon/favicon-32x32.png" sizes="32x32" />
@@ -67,52 +67,45 @@
 					<div class="input-field col s12 center">
 						<img src="img/login-logo.png" alt=""
 							class="circle responsive-img valign profile-image-login" />
-						<p class="center login-form-text" th:text="#{login.title}">Material
-							Design Admin Template</p>
+						<p class="center login-form-text" th:text="#{login.title}"></p>
 					</div>
 				</div>
-				<div th:if="${param.error}" class="alert alert-danger">Invalid
-					username and password.</div>
-				<div th:if="${param.logout}" class="alert alert-success">You
-					have been logged out.</div>
+				<div th:if="${param.error}" class="alert alert-danger"><p th:text="#{login.erroLogin}"></p></div>
+				<div th:if="${param.logout}" class="alert alert-success"><p th:text="#{login.saiu}"></p></div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-social-person-outline prefix"></i> <input
-							type="text" id="username" name="username" class="form-control"
-							placeholder="Usuário" />
-						<!--label th:text="#{login.usuario}"></label-->
+							type="text" id="username" name="username" class="form-control" required="true"/><label th:text="#{login.usuario}"></label>
 					</div>
 				</div>
 				<div class="row margin">
 					<div class="input-field col s12">
 						<i class="mdi-action-lock-outline prefix"></i> <input
 							type="password" id="password" name="password"
-							class="form-control" required="true" placeholder="Senha" />
-						<!--label
-							th:text="#{login.senha}"></label-->
+							class="form-control" required="true"/><label th:text="#{login.senha}"></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12 m12 l12  login-text">
-						<input type="checkbox" id="remember-me" /> <label
-							for="remember-me">Remember me</label>
+						<input type="checkbox" id="remember-me"/><label
+							for="remember-me" th:text="#{login.remember}"></label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<button type="submit" class="btn waves-effect waves-light col s12"
-							value="Login" id="btLogin" name="btLogin">Login</button>
+							value="Login" id="btLogin" name="btLogin" th:text="#{login.btnLogin}"></button>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s6 m6 l6">
 						<p class="margin medium-small">
-							<a th:href="page-register">Registre-se!</a>
+							<a th:href="page-register" th:text="#{login.cadastro}"></a>
 						</p>
 					</div>
 					<div class="input-field col s6 m6 l6">
 						<p class="margin right-align medium-small">
-							<a th:href="page-forgot-password">Esqueceu a senha?</a>
+							<a th:href="page-forgot-password" th:text="#{login.relembre}"></a>
 						</p>
 					</div>
 				</div>
