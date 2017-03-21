@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import br.edu.ifrs.canoas.teste.domain.User;
 import br.edu.ifrs.canoas.teste.repository.UserRepository;
 
-
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 

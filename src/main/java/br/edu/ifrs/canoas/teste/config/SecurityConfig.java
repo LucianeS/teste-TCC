@@ -29,16 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/webjars/**", "/resources/**", "/public/**", "/img/**", "/db/**", "/test/**",
-				"/css/**", "/fonts/**", "/img/**", "/js/**", "/less/**", "/mail/**","/font/**","/min/**");
+				"/css/**", "/fonts/**", "/img/**", "/js/**", "/less/**", "/mail/**","/font/**","/min/**", "/user/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
+			.antMatchers("/view").permitAll()
 			.antMatchers("/test").permitAll()
-			.antMatchers("/","/page-register","/page-forgot-password").permitAll()
-			//.antMatchers("/doacao/view/**").permitAll()
+			.antMatchers("/","/page-forgot-password").permitAll()
+			.antMatchers("/user/view/**").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated()
 			.and().formLogin()
 				.loginPage("/login").permitAll().and().logout().deleteCookies("remember-me")

@@ -17,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import br.edu.ifrs.canoas.teste.domain.Role;
 import br.edu.ifrs.canoas.teste.domain.User;
 
-
 public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = -8448427523761739807L;
